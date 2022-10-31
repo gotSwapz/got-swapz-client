@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { ThemeProvider } from "@material-tailwind/react";
 import App from "./App";
 import { ScrollToTop } from "./components/common/ScrollToTop";
@@ -11,11 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router>
+    <HashRouter>
       <ScrollToTop />
       <ThemeProvider>
         <App />
       </ThemeProvider>
-    </Router>
+    </HashRouter>
   </React.StrictMode>
 );
