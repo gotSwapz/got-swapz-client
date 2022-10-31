@@ -1,0 +1,10 @@
+export const HOME_ROUTE = "/";
+export const CREATE_ROUTE = "/create";
+export const COLLECTION_ROUTE = "/collection/:collectionId";
+export const COLLECTION_USER_ROUTE = "/collection/:collectionId/:userAddress";
+export const ITEM_ROUTE = "/item/:itemId";
+export const SWAP_ROUTE = "/swap/:swapId";
+export const USER_ROUTE = "/user/:userAddress";
+export const USER_EDIT_ROUTE = "/user/edit/:userAddress";
+export const PRIVACY_ROUTE = "/privacy";
+export const TERMS_ROUTE = "/terms-of-use";
