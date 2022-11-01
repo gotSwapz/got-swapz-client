@@ -328,7 +328,7 @@ export const CollectionPage = (): JSX.Element => {
                     ownedByCurrent={getCopies(nft, signerAddress)}
                     ownedByOther={getCopies(nft, userAddress)}
                     onSelectionChange={(selected: boolean) => {
-                      updateDemandedNftIds(nft.id, selected);
+                      updateDemandedNftIds(nft.idInCollection, selected);
                     }}
                   />
                 ))}
@@ -360,7 +360,7 @@ export const CollectionPage = (): JSX.Element => {
                     swap={true}
                     ownedByCurrent={getCopies(nft, signerAddress)}
                     onSelectionChange={(selected: boolean) => {
-                      updateOfferedNftIds(nft.id, selected);
+                      updateOfferedNftIds(nft.idInCollection, selected);
                     }}
                   />
                 ))}
