@@ -25,7 +25,9 @@ export const CollectionPage = (): JSX.Element => {
   const [collection, setCollection] = useState<Collection>();
   const [highlight, setHighlight] = useState(getHighlightOwned());
   const [offeredNftIds, setofferedNftIds] = useState<number[]>([]);
+  const [offeredNftIdsInCol, setofferedNftIdsInCol] = useState<number[]>([]);
   const [demandedNftIds, setdemandedNftIds] = useState<number[]>([]);
+  const [demandedNftIdsInCol, setdemandedNftIdsInCol] = useState<number[]>([]);
   const [creatingOffer, setCreatingOffer] = useState(false);
   const [contractBalance, setContractBalance] = useState<string>();
 
@@ -104,19 +106,27 @@ export const CollectionPage = (): JSX.Element => {
     }
   };
 
-  const updateOfferedNftIds = (tokenId: number, selected: boolean): void => {
+  const updateOfferedNftIds = (nft: Nft, selected: boolean): void => {
     if (selected) {
-      setofferedNftIds([...offeredNftIds, tokenId]);
+      setofferedNftIds([...offeredNftIds, nft.id]);
+      setofferedNftIdsInCol([...offeredNftIdsInCol, nft.idInCollection]);
     } else {
-      setofferedNftIds(offeredNftIds.filter((id) => id !== tokenId));
+      setofferedNftIds(offeredNftIds.filter((id) => id !== nft.id));
+      setofferedNftIdsInCol(
+        offeredNftIdsInCol.filter((id) => id !== nft.idInCollection)
+      );
     }
   };
 
-  const updateDemandedNftIds = (tokenId: number, selected: boolean): void => {
+  const updateDemandedNftIds = (nft: Nft, selected: boolean): void => {
     if (selected) {
-      setdemandedNftIds([...demandedNftIds, tokenId]);
+      setdemandedNftIds([...demandedNftIds, nft.id]);
+      setdemandedNftIdsInCol([...demandedNftIds, nft.idInCollection]);
     } else {
-      setdemandedNftIds(demandedNftIds.filter((id) => id !== tokenId));
+      setdemandedNftIds(demandedNftIds.filter((id) => id !== nft.id));
+      setdemandedNftIdsInCol(
+        demandedNftIds.filter((id) => id !== nft.idInCollection)
+      );
     }
   };
 
@@ -328,7 +338,7 @@ export const CollectionPage = (): JSX.Element => {
                     ownedByCurrent={getCopies(nft, signerAddress)}
                     ownedByOther={getCopies(nft, userAddress)}
                     onSelectionChange={(selected: boolean) => {
-                      updateDemandedNftIds(nft.idInCollection, selected);
+                      updateDemandedNftIds(nft, selected);
                     }}
                   />
                 ))}
@@ -360,7 +370,7 @@ export const CollectionPage = (): JSX.Element => {
                     swap={true}
                     ownedByCurrent={getCopies(nft, signerAddress)}
                     onSelectionChange={(selected: boolean) => {
-                      updateOfferedNftIds(nft.idInCollection, selected);
+                      updateOfferedNftIds(nft, selected);
                     }}
                   />
                 ))}
