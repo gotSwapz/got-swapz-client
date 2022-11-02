@@ -137,8 +137,8 @@ export const CollectionPage = (): JSX.Element => {
 
     try {
       const tx = await collectionContract.createSwapOffer(
-        offeredNftIds,
-        demandedNftIds,
+        offeredNftIdsInCol,
+        demandedNftIdsInCol,
         userAddress
       );
       const events = (await tx.wait()).events;
